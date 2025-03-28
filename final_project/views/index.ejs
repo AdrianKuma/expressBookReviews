@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+        .search__container{
+            width: 80%;
+            background-color: #333;
+            margin: 5px auto;
+            color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .search__container h2{
+            margin-bottom: 10px;
+        }
+        .search__container-form{
+            width: fit-content;
+            margin:0 auto
+        }
+        input[type=search]{
+            height: 25px;
+
+        }
+
+        .search__container-form select{
+            padding: 3px;
+            border-radius: 5px;
+        }
+
+
+        .book__card-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+
+        .book__card{
+            width: 90%;
+            height: fit-content;
+            background-color: rgb(94, 125, 151);
+            padding: 20px;
+
+        }
+
+        .book__card-isbn{
+
+        }
+
+        .book__card-title{
+
+        }
+
+        .book__card-author{
+
+        }
+    </style>
+</head>
+<body>
+    <section class="search__container">
+        <h2>Book Search</h2>
+        <form class="search__container-form" action = '/search' method="GET">
+            <select name="searchType">
+                <option value="author">Author</option>
+                <option value="isbn">Isbn</option>
+                <option value="title">Title</option>
+            </select>
+            <input type="search" name="searchTerm">
+            <button type="submit">search</button>
+        </form>  
+    </section>
+    <section class="display-books__container">
+    </section>
+    <section class="book__card-container">
+        <% if (Object.keys(books).length === 0) { %>
+            <p>No books found matching your search criteria.</p>
+        <% } else { %>
+            <% for (const bookId in books) { %>
+                <div class="book__card">
+                    <h3 class="book__card-title"><%= books[bookId].title %></h3>
+                    <span class="book__card-author"><%= books[bookId].author %></span>
+                    <p></p>
+                </div>
+            <% } %>
+        <% } %>
+    </section>
+
+    
+</body>
+</html>
